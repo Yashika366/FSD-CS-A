@@ -1,6 +1,6 @@
 import http from "http";
 import  os from "os";
-const port=5001;
+const port=4001;
 const users=[{id:1,name:"John",email:"john@example.com"},
     {id:2,name:"Jane",email:"jane@example.com"},
     {id:3,name:"Doe",email:"doe@example.com"}];
@@ -44,6 +44,7 @@ const server=http.createServer((req,res)=>{
     else if(url.startsWith("/users/")&& req.method=="DELETE"){
         const id=url.split("/")[2];
         const userIndex=users.findIndex(u=>u.id==id);
+        res.setHeader("Content-Type","application/json");
         if(userIndex==-1){
             res.statusCode=400;
             console.log(`user ${id} not found`);
